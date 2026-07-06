@@ -245,11 +245,11 @@ function calculate(num1, num2, operator) {
             return num1 * num2;
         case '/':
             if (num2 === 0) {
-                return console.log("Error: Division by zero");
+                return "Error: Division by zero";
             }
             return num1 / num2;
         default:
-            return console.log("Error: Invalid operator");
+            return "Error: Invalid operator";
     }
 }
 
@@ -264,16 +264,14 @@ Create a global variable globalCounter = 0. Write a function incrementCounter th
 let globalCounter = 0;
 
 function incrementCounter() {
-    let localCounter = 0;
-    localCounter++;
+    let globalCounter = 0;
     globalCounter++;
+    console.log("Local counter:", globalCounter);
 }
 
-console.log(`Global counter before calling function: ${globalCounter}`);
 incrementCounter();
-console.log(`Global counter first call: ${globalCounter}`);
 incrementCounter();
-console.log(`Global counter second call: ${globalCounter}`);
+console.log("Global counter:", globalCounter);
 
 /*Question 18: switch Statement - Day of Week
 Write a switch statement that takes a number (0-6) and returns the corresponding day name (0=Sunday, 1=Monday, etc.). Include a default case for invalid numbers.*/
