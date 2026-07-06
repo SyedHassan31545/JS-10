@@ -1,3 +1,4 @@
+
 /*Question 1: Variable Declarations and Initialization
 Create three variables: productName (string with value "Laptop"), price (number with value 999.99), and inStock (boolean with value true). Console.log all three variables in a single statement.*/
 let productName = "Laptop";
@@ -336,3 +337,161 @@ if (enteredPassword === "secret123") {
 } else {
     console.log("Access denied! Too many attempts.");
 }
+
+/*Question 21: Array Methods with for Loop
+Given numbers = [12, 45, 78, 23, 56, 89, 34]:
+
+Use a for loop to find the maximum value
+Use a for loop to calculate the average
+Create a new array with only numbers greater than 50
+Reverse the array without using reverse() method*/
+
+let numbers = [12, 45, 78, 23, 56, 89, 34];
+
+let maxValue = numbers[0];
+for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > maxValue) {
+        maxValue = numbers[i];
+    }
+}
+let sumOfNumbers = 0;
+for (let i = 0; i < numbers.length; i++) {
+    sumOfNumbers += numbers[i];
+}
+
+let average = sumOfNumbers / numbers.length;
+
+let greaterThanFifty = [];
+for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > 50) {
+        greaterThanFifty.push(numbers[i]);
+    }
+}
+let reversedArray = [];
+for (let i = numbers.length - 1; i >= 0; i--) {
+    reversedArray.push(numbers[i]);
+}
+
+console.log(`Maximum value: ${maxValue}`);
+console.log(`Average value: ${average}`);
+console.log(`Numbers greater than 50: ${greaterThanFifty}`);
+console.log(`Reversed array: ${reversedArray}`);
+
+/*Question 22: Event Handling Simulation
+Create a function handleClick that:
+
+Gets a value from an input field with id "username"
+Checks if it's empty and shows an alert if so
+Otherwise, displays "Welcome, [username]!" in a paragraph with id "greeting"
+Resets the input field after greeting*/
+
+function handleClick() {
+    let usernameInput = document.getElementById("username");
+    let greetingParagraph = document.getElementById("greeting");
+    let username = usernameInput.value.trim();
+
+    if (username === "") {
+        alert("Please enter a username.");
+    } else {
+        greetingParagraph.innerText = `Welcome, ${username}!`;
+        usernameInput.value = "";
+    }
+}
+
+/*Question 23: Form Validation Function
+Write a function validateForm that:
+
+Takes email and password as parameters
+Returns true if email contains "@" and password length ≥ 8
+Otherwise returns false with specific error messages
+Test with multiple test cases*/
+
+function validateForm(email, password) {
+    if (!email.includes("@")) {
+        console.log("Error: Invalid email address.");
+        return false;
+    }
+    if (password.length < 8) {
+        console.log("Error: Password must be at least 8 characters long.");
+        return false;
+    }
+    return true;
+}
+
+console.log(validateForm("hassan@example.com", "password123"));
+console.log(validateForm("hassanexample.com", "password123"));
+console.log(validateForm("hassan@example.com", "pass"));
+
+/*Question 24: Temperature Converter
+Create a function convertTemperature that:
+
+Takes a temperature and a unit ("C" or "F") as parameters
+Converts Celsius to Fahrenheit: (C × 9/5) + 32
+Converts Fahrenheit to Celsius: (F - 32) × 5/9
+Returns the converted value with 1 decimal place*/
+
+function convertTemperature(temp, unit) {
+    if (unit === "C") {
+        return ((temp * 9/5) + 32).toFixed(1);
+    } else if (unit === "F") {
+        return ((temp - 32) * 5/9).toFixed(1);
+    }
+    return "Error: Invalid unit. Use 'C' or 'F'.";
+}
+
+console.log(`${convertTemperature(25, "C")}°F`);
+console.log(`${convertTemperature(77, "F")}°C`);
+console.log(convertTemperature(100, "X"));
+
+/*Question 25: Shopping Cart Array Operations
+Create an array cart = [] and write these functions:
+
+addItem(name, price): Adds item object to cart
+removeItem(name): Removes item by name
+calculateTotal(): Returns sum of all item prices
+applyDiscount(percent): Applies discount to total
+listItems(): Returns array of just item names*/
+
+let cart = [];
+
+function addItem(name, price) {
+    cart.push({ name, price });
+}
+
+function removeItem(name) {
+    cart = cart.filter(item => item.name !== name);
+}
+
+function calculateTotal() {
+    let total = 0;
+
+    for (let item of cart) {
+        total += item.price;
+    }
+
+    return total;
+}
+
+function applyDiscount(percent) {
+    let total = calculateTotal();
+    return total - (total * (percent / 100));
+}
+
+function listItems() {
+    let items = [];
+
+    for (let item of cart) {
+        items.push(item.name);
+    }
+
+    return items;
+}
+
+addItem("Laptop", 999.99);
+addItem("Mouse", 49.99);
+console.log(`Cart items: ${listItems()}`);
+console.log(`Total before discount: $${calculateTotal().toFixed(2)}`);
+console.log(`Total after 10% discount: $${applyDiscount(10).toFixed(2)}`);
+removeItem("Mouse");
+console.log(`Cart items after removal: ${listItems()}`);
+console.log(`Total after removal: $${calculateTotal().toFixed(2)}`);
